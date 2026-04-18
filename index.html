@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Hnas Querosu · Restaurante Madrid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{--gold:#b8940a;--gold2:#d4aa1a;--black:#111;--gray:#6b6b6b;--light:#f7f5f0;--border:#e0dbd0;--red:#c0392b}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:#fff;color:var(--black);max-width:480px;margin:0 auto;font-size:15px;overflow-x:hidden}
+
+/* LOADER */
+#loader{position:fixed;inset:0;z-index:9999;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:opacity .8s ease}
+#loader.hidden{opacity:0;pointer-events:none}
+#lbar-wrap{width:50px;height:1px;background:#e0dbd0;position:relative;overflow:hidden;margin-top:8px}
+#lbar{position:absolute;left:0;top:0;width:0;height:100%;background:#b8940a;transition:width 1.3s ease}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:300;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;letter-spacing:1px}
+.nav-logo em{font-style:italic;color:var(--gold)}
+.nav-actions{display:flex;gap:8px}
+.nav-ico{background:none;border:none;cursor:pointer;padding:6px;display:flex;align-items:center}
+
+/* HERO */
+.hero{position:relative;height:100svh;min-height:580px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:48px 24px}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.25) 55%,transparent 100%)}
+.hero-content{position:relative;color:#fff}
+.hero-eyebrow{font-size:9px;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:14px}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(46px,13vw,64px);font-weight:300;line-height:1.05;margin-bottom:6px}
+.hero-title em{font-style:italic;color:#e8c96e}
+.hero-sub{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:34px}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn-g{background:var(--gold);color:#fff;border:none;padding:13px 28px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;font-weight:500;transition:background .2s}
+.btn-g:hover{background:var(--gold2)}
+.btn-w{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.45);padding:12px 28px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.btn-w:hover{border-color:#fff}
+
+/* UTILS */
+.sec-eyebrow{font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;line-height:1.1;color:var(--black);margin-bottom:10px}
+.sec-title em{font-style:italic}
+.sec-body{font-size:13px;color:var(--gray);line-height:1.85;margin-bottom:24px}
+.divider{width:36px;height:1px;background:var(--gold);margin-bottom:20px;opacity:.6}
+
+/* INTRO */
+.intro{padding:52px 24px;background:#fff;border-bottom:1px solid var(--border)}
+
+/* FULL IMG */
+.full-img{position:relative;height:52vw;min-height:220px;max-height:290px;overflow:hidden}
+.full-img img{width:100%;height:100%;object-fit:cover;display:block}
+.full-img-overlay{position:absolute;inset:0;background:rgba(0,0,0,.38);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;padding:20px;text-align:center}
+.full-img-label{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:#fff;letter-spacing:1px}
+.full-img-label em{font-style:italic;color:#e8c96e}
+
+/* SPLIT */
+.split-img{position:relative;height:62vw;min-height:240px;overflow:hidden}
+.split-img img{width:100%;height:100%;object-fit:cover;display:block}
+.split-img-badge{position:absolute;top:16px;left:16px;background:var(--gold);color:#fff;font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:5px 12px}
+.split-text{padding:40px 24px;background:#fff;border-bottom:1px solid var(--border)}
+
+/* BADGES */
+.badge{display:inline-block;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;margin-bottom:7px}
+.badge-star{background:#fff8e1;color:#b8940a;border:1px solid #e8c96e}
+.badge-new{background:#fdf0ee;color:#c0392b;border:1px solid #f5c6c0}
+.badge-share{background:#f0f7f0;color:#2d6a2d;border:1px solid #c0d9c0}
+
+/* ESPECIALIDADES */
+.espec-section{background:var(--light);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.espec-header{padding:44px 24px 24px}
+.espec-card{display:flex;border-top:1px solid var(--border)}
+.espec-card-img{width:115px;min-width:115px;overflow:hidden}
+.espec-card-img img{width:100%;height:100%;object-fit:cover;display:block}
+.espec-card-body{padding:20px 18px;flex:1}
+.espec-card-name{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:400;color:var(--black);margin-bottom:4px;line-height:1.25}
+.espec-card-desc{font-size:12px;color:var(--gray);line-height:1.6;margin-bottom:8px}
+.espec-card-price{font-size:14px;font-weight:600;color:var(--gold)}
+.espec-cta{padding:24px;border-top:1px solid var(--border)}
+
+/* NOVEDADES */
+.nov-section{background:#fff;border-bottom:1px solid var(--border)}
+.nov-header{padding:44px 24px 20px}
+.nov-hero-img{position:relative;height:58vw;min-height:230px;overflow:hidden}
+.nov-hero-img img{width:100%;height:100%;object-fit:cover;display:block}
+.nov-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:22px}
+.nov-hero-title{font-family:'Cormorant Garamond',serif;font-size:26px;color:#fff;font-weight:300;margin-bottom:4px}
+.nov-hero-price{font-size:14px;font-weight:600;color:#e8c96e}
+.nov-item{display:flex;align-items:stretch;border-top:1px solid var(--border)}
+.nov-item-img{width:104px;min-width:104px;overflow:hidden}
+.nov-item-img img{width:100%;height:100%;object-fit:cover;display:block}
+.nov-item-body{padding:18px 16px;flex:1}
+.nov-item-name{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--black);margin-bottom:3px}
+.nov-item-desc{font-size:11px;color:var(--gray);line-height:1.6;margin-bottom:8px}
+.nov-item-price{font-size:13px;font-weight:600;color:var(--gold)}
+
+/* MENU CARTA */
+.menu-nav{position:sticky;top:57px;z-index:200;background:#fff;border-bottom:1px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none}
+.menu-nav::-webkit-scrollbar{display:none}
+.menu-tab{background:none;border:none;border-bottom:2px solid transparent;padding:13px 16px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);cursor:pointer;white-space:nowrap;font-family:'Jost',sans-serif;font-weight:500;transition:all .2s;margin-bottom:-1px}
+.menu-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.menu-cat{display:none;padding-bottom:8px}
+.menu-cat.show{display:block}
+.menu-cat-header{padding:34px 24px 16px;border-bottom:1px solid var(--border)}
+.menu-cat-title{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300}
+.menu-cat-sub{font-size:11px;color:var(--gray);letter-spacing:1px;margin-top:4px}
+.menu-item{display:flex;justify-content:space-between;align-items:flex-start;padding:18px 24px;border-bottom:1px solid var(--border);gap:12px}
+.menu-item-left{flex:1}
+.menu-item-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--black);margin-bottom:3px}
+.menu-item-desc{font-size:11px;color:var(--gray);line-height:1.5}
+.menu-item-tags{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
+.menu-item-price{font-size:13px;font-weight:600;color:var(--gold);white-space:nowrap}
+
+/* RESERVAS */
+.res-hero{position:relative;height:42vw;min-height:190px;overflow:hidden}
+.res-hero img{width:100%;height:100%;object-fit:cover;display:block}
+.res-hero-overlay{position:absolute;inset:0;background:rgba(0,0,0,.52);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px}
+.res-hero-title{font-family:'Cormorant Garamond',serif;font-size:34px;color:#fff;font-weight:300;margin-bottom:4px}
+.res-hero-sub{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.res-form{padding:32px 24px 40px}
+.res-label{display:block;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-bottom:8px;margin-top:24px}
+.res-input,.res-textarea{width:100%;border:none;border-bottom:1px solid var(--border);padding:10px 0;font-size:14px;font-family:'Jost',sans-serif;color:var(--black);background:transparent;outline:none;transition:border .2s}
+.res-input:focus,.res-textarea:focus{border-bottom-color:var(--gold)}
+.res-textarea{resize:none;min-height:72px;line-height:1.5}
+.cal-nav-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.cal-nav-btn{background:none;border:1px solid var(--border);width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all .2s}
+.cal-nav-btn:hover{border-color:var(--gold);color:var(--gold)}
+.cal-month-lbl{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:400}
+.cal-days-hdr{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:4px}
+.cal-dh{text-align:center;font-size:9px;letter-spacing:1px;color:var(--gray);padding:4px 0;text-transform:uppercase}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cal-d{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer;transition:all .2s;border:1px solid transparent}
+.cal-d:hover:not(.dis){background:var(--light);border-color:var(--border)}
+.cal-d.sel{background:var(--gold);color:#fff;border-color:var(--gold)}
+.cal-d.today{border-color:var(--gold);color:var(--gold);font-weight:600}
+.cal-d.dis{color:#ccc;cursor:default}
+.slots{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:8px}
+.slot{padding:9px 4px;border:1px solid var(--border);text-align:center;font-size:12px;cursor:pointer;transition:all .2s}
+.slot:hover{border-color:var(--gold);color:var(--gold)}
+.slot.sel{background:var(--gold);color:#fff;border-color:var(--gold)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.chip{padding:8px 14px;border:1px solid var(--border);font-size:12px;cursor:pointer;transition:all .2s}
+.chip:hover{border-color:var(--gold);color:var(--gold)}
+.chip.sel{background:var(--gold);color:#fff;border-color:var(--gold)}
+.btn-ws-send{width:100%;background:#25D366;color:#fff;border:none;padding:17px;font-size:10px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;font-family:'Jost',sans-serif;font-weight:600;margin-top:32px;display:flex;align-items:center;justify-content:center;gap:10px;transition:background .2s}
+.btn-ws-send:hover{background:#1fbc58}
+.btn-ws-send svg{width:20px;height:20px;fill:#fff;flex-shrink:0}
+
+/* CONTACTO + FOOTER */
+.contact-strip{background:var(--light);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:36px 24px;display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.contact-lbl{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-bottom:5px}
+.contact-val{font-size:14px}
+footer{background:#111;padding:52px 24px 32px;text-align:center}
+.foot-logo{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:#fff;margin-bottom:5px}
+.foot-logo em{font-style:italic;color:#d4aa1a}
+.foot-city{font-size:9px;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:28px}
+.foot-socials{display:flex;justify-content:center;gap:10px;margin-bottom:28px}
+.foot-social{display:flex;align-items:center;gap:7px;padding:10px 18px;border:0.5px solid rgba(255,255,255,.13);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5);text-decoration:none;transition:all .2s}
+.foot-social:hover{border-color:#d4aa1a;color:#d4aa1a}
+.foot-social.ws{color:#25D366;border-color:rgba(37,211,102,.2)}
+.foot-copy{font-size:10px;color:rgba(255,255,255,.2);letter-spacing:1px}
+
+/* PAGES */
+.page{display:block}
+.page.hidden{display:none}
+
+/* BOTTOM NAV */
+.bottom-nav{position:sticky;bottom:0;z-index:200;background:#fff;border-top:1px solid var(--border);display:flex}
+.bnav-btn{flex:1;background:none;border:none;padding:12px 4px 10px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;font-family:'Jost',sans-serif;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);transition:color .2s}
+.bnav-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.bnav-btn.active{color:var(--gold)}
+.bnav-btn.ws-nav{color:#25D366}
+.bnav-btn.ws-nav svg{stroke:none;fill:#25D366}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div style="font-family:'Cormorant Garamond',serif;font-size:26px;letter-spacing:4px;color:#b8940a">Hnas <em style="font-style:italic">Querosu</em></div>
+  <div style="font-size:9px;letter-spacing:4px;text-transform:uppercase;color:#aaa">Madrid</div>
+  <div id="lbar-wrap"><div id="lbar"></div></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Hnas <em>Querosu</em></div>
+  <div class="nav-actions">
+    <button class="nav-ico" onclick="openIG()">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+    </button>
+    <button class="nav-ico" onclick="openWS()">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="#25D366" stroke="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.101 1.51 5.83L.057 23.214a.75.75 0 0 0 .918.899l5.444-1.428A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.694-.5-5.24-1.373l-.374-.214-3.875 1.016 1.037-3.79-.228-.37A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== INICIO ===== -->
+<div class="page" id="pg-inicio">
+  <div class="hero">
+    <img src="https://images.pexels.com/photos/696218/pexels-photo-696218.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Restaurante Hnas Querosu Madrid">
+    <div class="hero-grad"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Restaurante · Madrid</p>
+      <h1 class="hero-title">Hnas<br><em>Querosu</em></h1>
+      <p class="hero-sub">Cocina con alma · Madrid de verdad</p>
+      <div class="hero-btns">
+        <button class="btn-g" onclick="showPage('menu')">Ver Menú</button>
+        <button class="btn-w" onclick="showPage('reservas')">Reservar Mesa</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="intro">
+    <p class="sec-eyebrow">Nuestra historia</p>
+    <div class="divider"></div>
+    <h2 class="sec-title">Sabor<br><em>de siempre</em></h2>
+    <p class="sec-body">Cocina casera con técnica, producto honesto y mucho cariño. Las Hermanas Querosu traen a Madrid los sabores de siempre, elevados con el toque que merecen.</p>
+    <button class="btn-g" onclick="showPage('menu')">Explorar el menú</button>
+  </div>
+
+  <div class="full-img">
+    <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=800" alt="especialidades">
+    <div class="full-img-overlay">
+      <div style="font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.5)">Lo que nos define</div>
+      <div class="full-img-label">Nuestras <em>Especialidades</em></div>
+    </div>
+  </div>
+
+  <div class="espec-section">
+    <div class="espec-header">
+      <p class="sec-eyebrow">Los favoritos</p>
+      <div class="divider"></div>
+      <h2 class="sec-title">Especialidades<br><em>de la casa</em></h2>
+      <p class="sec-body" style="margin-bottom:0">Platos que vuelven a por más. Los que nunca fallan.</p>
+    </div>
+    <div class="espec-card">
+      <div class="espec-card-img"><img src="https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=300" alt="saquitos carillera"></div>
+      <div class="espec-card-body"><div class="badge badge-star">★ Estrella</div><div class="espec-card-name">Saquitos de Carillera</div><div class="espec-card-desc">14 ud · Carillera en hojaldre crujiente</div><div class="espec-card-price">13,90 €</div></div>
+    </div>
+    <div class="espec-card">
+      <div class="espec-card-img"><img src="https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&w=300" alt="gyozas de pato"></div>
+      <div class="espec-card-body"><div class="badge badge-star">★ Estrella</div><div class="espec-card-name">Gyozas de Pato</div><div class="espec-card-desc">9 ud · 20 g cada pieza</div><div class="espec-card-price">9,20 €</div></div>
+    </div>
+    <div class="espec-card">
+      <div class="espec-card-img"><img src="https://images.pexels.com/photos/1893557/pexels-photo-1893557.jpeg?auto=compress&cs=tinysrgb&w=300" alt="croquetas ibérica"></div>
+      <div class="espec-card-body"><div class="badge badge-star">★ Favorito</div><div class="espec-card-name">Croquetas La Ibérica</div><div class="espec-card-desc">8 ud caseras · Jamón ibérico</div><div class="espec-card-price">11,80 €</div></div>
+    </div>
+    <div class="espec-card">
+      <div class="espec-card-img"><img src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=300" alt="saquitos marisco"></div>
+      <div class="espec-card-body"><div class="badge badge-share">Para compartir</div><div class="espec-card-name">Saquitos de Marisco</div><div class="espec-card-desc">14 ud · Relleno de marisco en hojaldre</div><div class="espec-card-price">13,90 €</div></div>
+    </div>
+    <div class="espec-cta"><button class="btn-g" style="width:100%" onclick="showPage('menu')">Ver menú completo</button></div>
+  </div>
+
+  <div class="split-img">
+    <img src="https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&cs=tinysrgb&w=800" alt="ambiente restaurante">
+    <div class="split-img-badge">Madrid · 2025</div>
+  </div>
+  <div class="split-text">
+    <p class="sec-eyebrow">El ambiente</p>
+    <div class="divider"></div>
+    <h2 class="sec-title">Vive la<br><em>experiencia</em></h2>
+    <p class="sec-body">Un espacio donde la cocina y el ambiente se fusionan. Reserva tu mesa y disfruta de una noche que recordarás.</p>
+    <button class="btn-g" onclick="showPage('reservas')">Reservar mesa</button>
+  </div>
+
+  <div class="nov-section">
+    <div class="nov-header">
+      <p class="sec-eyebrow" style="color:var(--red)">🔥 Recién llegadas</p>
+      <div class="divider" style="background:var(--red)"></div>
+      <h2 class="sec-title">Novedades<br><em>de la carta</em></h2>
+    </div>
+    <div class="nov-hero-img">
+      <img src="https://images.pexels.com/photos/1639557/pexels-photo-1639557.jpeg?auto=compress&cs=tinysrgb&w=800" alt="hamburguesa querosu">
+      <div class="nov-hero-overlay">
+        <div class="badge badge-new" style="margin-bottom:8px">🔥 Nuevo</div>
+        <div class="nov-hero-title">Hamburguesa Querosu</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.6);margin-bottom:6px">Vacuno y buey · Huevo · Beicon · Queso · Patatas</div>
+        <div class="nov-hero-price">13,50 €</div>
+      </div>
+    </div>
+    <div class="nov-item">
+      <div class="nov-item-img"><img src="https://images.pexels.com/photos/1552635/pexels-photo-1552635.jpeg?auto=compress&cs=tinysrgb&w=200" alt="hamburguesa crispy"></div>
+      <div class="nov-item-body">
+        <div class="badge badge-new" style="margin-bottom:6px">🔥 Nuevo</div>
+        <div class="nov-item-name">Hamburguesa Crispy</div>
+        <div class="nov-item-desc">Pollo crujiente · Huevo · Beicon · Queso · Con patatas</div>
+        <div class="nov-item-price">12,20 €</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="full-img" style="max-height:260px">
+    <img src="https://images.pexels.com/photos/1253648/pexels-photo-1253648.jpeg?auto=compress&cs=tinysrgb&w=800" alt="del mar">
+    <div class="full-img-overlay">
+      <div style="font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.5)">Lo mejor del océano</div>
+      <div class="full-img-label">Del <em>Mar</em></div>
+      <button class="btn-g" style="font-size:9px;padding:10px 22px;margin-top:6px" onclick="showCat('mar');showPage('menu')">Ver platos de mar</button>
+    </div>
+  </div>
+
+  <div class="contact-strip">
+    <div><div class="contact-lbl">Ubicación</div><div class="contact-val">Madrid</div></div>
+    <div><div class="contact-lbl">Reservas</div><div class="contact-val">+34 602 52 36 39</div></div>
+    <div><div class="contact-lbl">Mediodía</div><div class="contact-val">13:00 – 16:00</div></div>
+    <div><div class="contact-lbl">Noche</div><div class="contact-val">20:00 – 23:00</div></div>
+  </div>
+
+  <footer>
+    <div class="foot-logo">Hnas <em>Querosu</em></div>
+    <div class="foot-city">Madrid · España</div>
+    <div class="foot-socials">
+      <a class="foot-social" href="https://www.instagram.com/restaurante_hermanas_querosu/" target="_blank">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg>Instagram
+      </a>
+      <a class="foot-social ws" href="https://wa.me/34602523639" target="_blank">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.101 1.51 5.83L.057 23.214a.75.75 0 0 0 .918.899l5.444-1.428A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.694-.5-5.24-1.373l-.374-.214-3.875 1.016 1.037-3.79-.228-.37A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>WhatsApp
+      </a>
+    </div>
+    <div class="foot-copy">© 2025 Restaurante Hermanas Querosu · Todos los derechos reservados</div>
+  </footer>
+</div>
+
+<!-- ===== MENÚ COMPLETO ===== -->
+<div class="page hidden" id="pg-menu">
+  <div class="full-img" style="max-height:200px">
+    <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=800" alt="la carta">
+    <div class="full-img-overlay">
+      <div style="font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.5)">Hermanas Querosu</div>
+      <div class="full-img-label">La <em>Carta</em></div>
+    </div>
+  </div>
+  <div class="menu-nav">
+    <button class="menu-tab active" onclick="showCat('raciones',this)">Raciones</button>
+    <button class="menu-tab" onclick="showCat('espec',this)">Especialidades</button>
+    <button class="menu-tab" onclick="showCat('mar',this)">Del Mar</button>
+    <button class="menu-tab" onclick="showCat('novedades',this)">Novedades</button>
+  </div>
+  <div class="menu-cat show" id="cat-raciones">
+    <div class="menu-cat-header"><div class="sec-eyebrow">Para compartir o no</div><div class="menu-cat-title">Raciones</div><div class="menu-cat-sub">Cocina directa y sin rodeos</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Patata Mixta</div><div class="menu-item-desc">Brava o alioli · elige o pide las dos</div><div class="menu-item-tags"><span class="badge badge-star">★ Popular</span></div></div><div class="menu-item-price">9,10 €</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Croquetas La Ibérica</div><div class="menu-item-desc">Caseras · 8 ud · Jamón ibérico</div><div class="menu-item-tags"><span class="badge badge-star">★ Favorito</span></div></div><div class="menu-item-price">11,80 €</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Croquetas La Zamorana</div><div class="menu-item-desc">Caseras · 8 ud · Receta tradicional</div></div><div class="menu-item-price">11,80 €</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Croquetas La del Mar</div><div class="menu-item-desc">Caseras · 8 ud · Sabor a océano</div></div><div class="menu-item-price">11,80 €</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Gyozas de Pato</div><div class="menu-item-desc">9 ud · 20 g cada pieza</div><div class="menu-item-tags"><span class="badge badge-star">★ Popular</span></div></div><div class="menu-item-price">9,20 €</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Bites Jalapeño y Gouda</div><div class="menu-item-desc">Crujientes por fuera, cremosos por dentro</div></div><div class="menu-item-price">9,20 €</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Nachos Pollo y Guacamole</div><div class="menu-item-desc">Estilo Tijuana</div><div class="menu-item-tags"><span class="badge badge-share">Para compartir</span></div></div><div class="menu-item-price">10,20 €</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Alitas BBQ</div><div class="menu-item-desc">8 ud · Salsa BBQ casera</div></div><div class="menu-item-price">11,00 €</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Oreja al Ajillo</div><div class="menu-item-desc">Receta clásica madrileña</div></div><div class="menu-item-price">11,60 €</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Torreznos</div><div class="menu-item-desc">2 ud · Crujientes, como tienen que ser</div></div><div class="menu-item-price">12,90 €</div></div>
+  </div>
+  <div class="menu-cat" id="cat-espec">
+    <div class="menu-cat-header"><div class="sec-eyebrow">Lo que nos hace únicos</div><div class="menu-cat-title">Especialidades</div><div class="menu-cat-sub">Los platos que repiten siempre</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Tiras de Pollo Kentucky</div><div class="menu-item-desc">Rebozado crujiente al estilo americano</div><div class="menu-item-tags"><span class="badge badge-star">★ Popular</span></div></div><div class="menu-item-price">14,60 €</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Saquitos de Carillera</div><div class="menu-item-desc">14 ud · Carillera en hojaldre crujiente</div><div class="menu-item-tags"><span class="badge badge-star">★ Estrella</span></div></div><div class="menu-item-price">13,90 €</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Saquitos de Marisco</div><div class="menu-item-desc">14 ud · Relleno de marisco en hojaldre</div><div class="menu-item-tags"><span class="badge badge-share">Para compartir</span></div></div><div class="menu-item-price">13,90 €</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Alitas Kentucky</div><div class="menu-item-desc">8 ud · Crujientes al estilo Kentucky</div></div><div class="menu-item-price">12,50 €</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Huevos Rotos</div><div class="menu-item-desc">Con jamón o con chorizo</div><div class="menu-item-tags"><span class="badge badge-star">★ Popular</span></div></div><div class="menu-item-price">12,00 €</div></div>
+  </div>
+  <div class="menu-cat" id="cat-mar">
+    <div class="menu-cat-header"><div class="sec-eyebrow">Lo mejor del océano</div><div class="menu-cat-title">Del Mar</div><div class="menu-cat-sub">Frescos y al punto</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Patas de Calamar</div><div class="menu-item-desc">Doradas a la perfección</div></div><div class="menu-item-price">13,90 €</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Calamares a la Andaluza</div><div class="menu-item-desc">Rebozados en harina y fritos en aceite de oliva</div><div class="menu-item-tags"><span class="badge badge-star">★ Popular</span></div></div><div class="menu-item-price">12,50 €</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Gambón a la Plancha</div><div class="menu-item-desc">8 ud · Jugosos y al punto</div><div class="menu-item-tags"><span class="badge badge-star">★ Popular</span></div></div><div class="menu-item-price">14,20 €</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Fritura de Pescado</div><div class="menu-item-desc">Boquerones, patas de calamar, calamares y cazón</div><div class="menu-item-tags"><span class="badge badge-share">Para compartir</span></div></div><div class="menu-item-price">28,10 €</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Sepia a la Plancha</div><div class="menu-item-desc">2 ud · Con alioli de la casa</div></div><div class="menu-item-price">16,30 €</div></div>
+    <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Boquerones Fritos</div><div class="menu-item-desc">Ración completa · Recién fritos</div></div><div class="menu-item-price">12,10 €</div></div>
+  </div>
+  <div class="menu-cat" id="cat-novedades">
+    <div class="menu-cat-header" style="background:#fffbf7;border-bottom:1px solid #f5e8d0"><div class="sec-eyebrow" style="color:var(--red)">🔥 Recién llegadas</div><div class="divider" style="background:var(--red)"></div><div class="menu-cat-title">Novedades</div><div class="menu-cat-sub">Las incorporaciones que ya son favoritas</div></div>
+    <div class="menu-item" style="background:#fffbf7;border-bottom:1px solid #f5e8d0"><div class="menu-item-left"><div class="menu-item-name">Hamburguesa Querosu</div><div class="menu-item-desc">Vacuno y buey · Huevo · Beicon · Queso · Con patatas</div><div class="menu-item-tags"><span class="badge badge-new">🔥 Nuevo</span><span class="badge badge-star" style="margin-left:4px">★ Popular</span></div></div><div class="menu-item-price">13,50 €</div></div>
+    <div class="menu-item" style="background:#fffbf7;border-bottom:1px solid #f5e8d0"><div class="menu-item-left"><div class="menu-item-name">Hamburguesa Crispy</div><div class="menu-item-desc">Pollo crujiente · Huevo · Beicon · Queso · Con patatas</div><div class="menu-item-tags"><span class="badge badge-new">🔥 Nuevo</span></div></div><div class="menu-item-price">12,20 €</div></div>
+  </div>
+</div>
+
+<!-- ===== RESERVAS ===== -->
+<div class="page hidden" id="pg-reservas">
+  <div class="res-hero">
+    <img src="https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg?auto=compress&cs=tinysrgb&w=800" alt="reservar mesa">
+    <div class="res-hero-overlay">
+      <div class="res-hero-title">Reservar Mesa</div>
+      <div class="res-hero-sub">Te confirmamos por WhatsApp</div>
+    </div>
+  </div>
+  <div class="res-form">
+    <label class="res-label" style="margin-top:0">Elige un día</label>
+    <div class="cal-nav-row">
+      <button class="cal-nav-btn" onclick="chMonth(-1)">‹</button>
+      <span class="cal-month-lbl" id="calLbl"></span>
+      <button class="cal-nav-btn" onclick="chMonth(1)">›</button>
+    </div>
+    <div class="cal-days-hdr" id="calDH"></div>
+    <div class="cal-grid" id="calGrid"></div>
+    <label class="res-label">Hora</label>
+    <div class="slots">
+      <div class="slot" onclick="selSlot(this)">13:00</div><div class="slot" onclick="selSlot(this)">13:30</div><div class="slot" onclick="selSlot(this)">14:00</div><div class="slot" onclick="selSlot(this)">14:30</div><div class="slot" onclick="selSlot(this)">15:00</div>
+      <div class="slot" onclick="selSlot(this)">20:00</div><div class="slot" onclick="selSlot(this)">20:30</div><div class="slot" onclick="selSlot(this)">21:00</div><div class="slot" onclick="selSlot(this)">21:30</div><div class="slot" onclick="selSlot(this)">22:00</div>
+    </div>
+    <label class="res-label">Número de personas</label>
+    <div class="chips">
+      <div class="chip" onclick="selChip(this,'1')">1</div><div class="chip" onclick="selChip(this,'2')">2</div><div class="chip" onclick="selChip(this,'3')">3</div><div class="chip" onclick="selChip(this,'4')">4</div><div class="chip" onclick="selChip(this,'5')">5</div><div class="chip" onclick="selChip(this,'6')">6</div><div class="chip" onclick="selChip(this,'+7')">+7</div>
+    </div>
+    <label class="res-label">Tu nombre</label>
+    <input type="text" class="res-input" id="rNombre" placeholder="Nombre y apellido">
+    <label class="res-label">Teléfono de contacto</label>
+    <input type="tel" class="res-input" id="rTel" placeholder="+34 600 000 000">
+    <label class="res-label">Notas especiales (opcional)</label>
+    <textarea class="res-textarea" id="rNotas" placeholder="Alergias, celebración, mesa especial..."></textarea>
+    <button class="btn-ws-send" onclick="enviar()">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.101 1.51 5.83L.057 23.214a.75.75 0 0 0 .918.899l5.444-1.428A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.694-.5-5.24-1.373l-.374-.214-3.875 1.016 1.037-3.79-.228-.37A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Enviar reserva por WhatsApp
+    </button>
+    <p style="text-align:center;font-size:10px;color:#aaa;margin-top:12px;letter-spacing:1px">Se abrirá WhatsApp con tu reserva lista para enviar</p>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <button class="bnav-btn active" id="bnav-inicio" onclick="showPage('inicio')">
+    <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Inicio
+  </button>
+  <button class="bnav-btn" id="bnav-menu" onclick="showPage('menu')">
+    <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>Menú
+  </button>
+  <button class="bnav-btn" id="bnav-reservas" onclick="showPage('reservas')">
+    <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Reservar
+  </button>
+  <button class="bnav-btn ws-nav" onclick="openWS()">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.101 1.51 5.83L.057 23.214a.75.75 0 0 0 .918.899l5.444-1.428A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.694-.5-5.24-1.373l-.374-.214-3.875 1.016 1.037-3.79-.228-.37A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>WhatsApp
+  </button>
+</div>
+
+<script>
+const WS='34602523639';
+let calY,calM,selDate='',selTime='',selPersons='';
+const MONTHS=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const WDAYS=['L','M','X','J','V','S','D'];
+
+function showPage(p){
+  ['inicio','menu','reservas'].forEach(x=>{
+    document.getElementById('pg-'+x).classList.toggle('hidden',x!==p);
+    const b=document.getElementById('bnav-'+x);
+    if(b)b.classList.toggle('active',x===p);
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function showCat(id,btn){
+  document.querySelectorAll('.menu-cat').forEach(c=>c.classList.remove('show'));
+  document.getElementById('cat-'+id).classList.add('show');
+  if(btn){document.querySelectorAll('.menu-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');}
+}
+function openWS(){window.open('https://wa.me/'+WS,'_blank')}
+function openIG(){window.open('https://www.instagram.com/restaurante_hermanas_querosu/','_blank')}
+function initCal(){const n=new Date();calY=n.getFullYear();calM=n.getMonth();renderCal()}
+function chMonth(d){calM+=d;if(calM<0){calM=11;calY--}if(calM>11){calM=0;calY++}renderCal()}
+function renderCal(){
+  document.getElementById('calLbl').textContent=MONTHS[calM]+' '+calY;
+  document.getElementById('calDH').innerHTML=WDAYS.map(d=>`<div class="cal-dh">${d}</div>`).join('');
+  const grid=document.getElementById('calGrid');grid.innerHTML='';
+  const first=new Date(calY,calM,1);
+  let sd=first.getDay();sd=sd===0?6:sd-1;
+  const dim=new Date(calY,calM+1,0).getDate();
+  const today=new Date();today.setHours(0,0,0,0);
+  for(let i=0;i<sd;i++){const el=document.createElement('div');el.className='cal-d dis';grid.appendChild(el)}
+  for(let day=1;day<=dim;day++){
+    const el=document.createElement('div');
+    const dt=new Date(calY,calM,day);
+    const dstr=`${day}/${calM+1}/${calY}`;
+    const past=dt<today;
+    el.className='cal-d'+(past?' dis':'')+(dstr===selDate?' sel':'');
+    if(dt.getTime()===today.getTime())el.classList.add('today');
+    el.textContent=day;
+    if(!past)el.onclick=()=>{selDate=dstr;renderCal()};
+    grid.appendChild(el);
+  }
+}
+function selSlot(el){document.querySelectorAll('.slot').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');selTime=el.textContent}
+function selChip(el,v){document.querySelectorAll('.chip').forEach(c=>c.classList.remove('sel'));el.classList.add('sel');selPersons=v}
+function enviar(){
+  const n=document.getElementById('rNombre').value.trim();
+  const t=document.getElementById('rTel').value.trim();
+  const no=document.getElementById('rNotas').value.trim();
+  if(!selDate)return alert('Selecciona un día');
+  if(!selTime)return alert('Selecciona una hora');
+  if(!selPersons)return alert('Indica el número de personas');
+  if(!n)return alert('Escribe tu nombre');
+  let msg=`🍽️ *RESERVA · Hnas Querosu*\n\n📅 Día: ${selDate}\n⏰ Hora: ${selTime}\n👥 Personas: ${selPersons}\n👤 Nombre: ${n}`;
+  if(t)msg+=`\n📱 Tel: ${t}`;
+  if(no)msg+=`\n📝 Notas: ${no}`;
+  msg+='\n\n¡Muchas gracias! 😊';
+  window.open(`https://wa.me/${WS}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+window.addEventListener('load',()=>{
+  document.getElementById('lbar').style.width='100%';
+  setTimeout(()=>{document.getElementById('loader').style.opacity='0';setTimeout(()=>document.getElementById('loader').style.display='none',800)},1400);
+});
+initCal();
+</script>
+</body>
+</html>
