@@ -7,23 +7,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-:root{--black:#0d0d0d;--white:#ffffff;--gray:#f4f4f2;--mid:#888;--border:#e8e8e8;--accent:#0d0d0d}
+:root{--black:#0d0d0d;--white:#fff;--gray:#f4f4f2;--mid:#888;--border:#e8e8e8}
 html{scroll-behavior:smooth}
 body{font-family:'Inter',sans-serif;background:#fff;color:var(--black);max-width:430px;margin:0 auto;overflow-x:hidden}
 
 /* LOADER */
 #loader{position:fixed;inset:0;z-index:9999;background:#0d0d0d;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;transition:opacity .6s}
 #loader.out{opacity:0;pointer-events:none}
+.ld-city{font-size:9px;letter-spacing:6px;text-transform:uppercase;color:rgba(255,255,255,.35)}
 .ld-logo{font-family:'Playfair Display',serif;font-size:28px;color:#fff;letter-spacing:3px;font-weight:400}
 .ld-logo em{font-style:italic}
-.ld-line{width:48px;height:1px;background:rgba(255,255,255,.2);position:relative;overflow:hidden}
+.ld-line{width:48px;height:1px;background:rgba(255,255,255,.15);position:relative;overflow:hidden}
 .ld-line::after{content:'';position:absolute;left:-100%;top:0;width:100%;height:100%;background:#fff;animation:ld 1.4s ease forwards}
 @keyframes ld{to{left:0}}
-.ld-city{font-size:9px;letter-spacing:6px;text-transform:uppercase;color:rgba(255,255,255,.35)}
 
 /* NAV */
 nav{position:sticky;top:0;z-index:300;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:56px}
-.nav-logo{font-family:'Playfair Display',serif;font-size:18px;font-weight:400;letter-spacing:.5px;color:var(--black)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:18px;font-weight:400;letter-spacing:.5px}
 .nav-logo em{font-style:italic}
 .nav-right{display:flex;gap:4px}
 .nav-ico{background:none;border:none;cursor:pointer;width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background .2s}
@@ -34,8 +34,8 @@ nav{position:sticky;top:0;z-index:300;background:rgba(255,255,255,.97);backdrop-
 .hero{position:relative;height:100svh;min-height:600px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:48px 24px 56px}
 .hero-bg{position:absolute;inset:0}
 .hero-bg img{width:100%;height:100%;object-fit:cover}
-.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.4) 50%,rgba(0,0,0,.1) 100%)}
-.hero-tag{position:absolute;top:24px;left:24px;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);padding:6px 14px;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.8)}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.35) 50%,rgba(0,0,0,.08) 100%)}
+.hero-tag{position:absolute;top:24px;left:24px;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);padding:6px 14px;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.85)}
 .hero-content{position:relative}
 .hero-pre{font-size:9px;letter-spacing:6px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:12px}
 .hero-title{font-family:'Playfair Display',serif;font-size:58px;font-weight:400;line-height:1;color:#fff;margin-bottom:4px}
@@ -43,51 +43,47 @@ nav{position:sticky;top:0;z-index:300;background:rgba(255,255,255,.97);backdrop-
 .hero-loc{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:32px;display:flex;align-items:center;gap:8px}
 .hero-loc::before{content:'';display:inline-block;width:20px;height:1px;background:rgba(255,255,255,.3)}
 .hero-actions{display:flex;gap:10px}
-.btn-black{background:#fff;color:#000;border:none;padding:14px 28px;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;font-weight:500;cursor:pointer;transition:opacity .2s}
-.btn-black:hover{opacity:.85}
+.btn-white{background:#fff;color:#000;border:none;padding:14px 28px;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;font-weight:500;cursor:pointer;transition:opacity .2s}
+.btn-white:hover{opacity:.85}
 .btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35);padding:13px 28px;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:border .2s}
 .btn-ghost:hover{border-color:#fff}
-.hero-scroll{position:absolute;bottom:24px;right:24px;display:flex;flex-direction:column;align-items:center;gap:6px}
-.hero-scroll span{font-size:7px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.3);writing-mode:vertical-rl}
-.hero-scroll-line{width:1px;height:32px;background:rgba(255,255,255,.15)}
 
 /* MANIFESTO */
 .manifesto{padding:52px 24px;border-bottom:1px solid var(--border)}
 .man-pre{font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--mid);margin-bottom:16px}
+.man-line{width:32px;height:2px;background:var(--black);margin-bottom:24px}
 .man-title{font-family:'Playfair Display',serif;font-size:32px;font-weight:400;line-height:1.15;color:var(--black);margin-bottom:16px}
 .man-title em{font-style:italic}
 .man-body{font-size:13px;color:var(--mid);line-height:1.9;margin-bottom:28px}
-.man-line{width:32px;height:2px;background:var(--black);margin-bottom:28px}
 .btn-dark{background:var(--black);color:#fff;border:none;padding:14px 28px;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:10px;transition:opacity .2s}
 .btn-dark:hover{opacity:.8}
-.btn-dark svg{width:14px;height:14px;fill:#fff}
 
-/* FULL BG BAND */
+/* BAND */
 .band{position:relative;height:48vw;min-height:200px;max-height:260px;overflow:hidden}
 .band img{width:100%;height:100%;object-fit:cover;display:block}
-.band-overlay{position:absolute;inset:0;background:rgba(0,0,0,.42);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:20px}
-.band-pre{font-size:8px;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,.45)}
+.band-overlay{position:absolute;inset:0;background:rgba(0,0,0,.42);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:20px}
+.band-pre{font-size:8px;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,.5)}
 .band-title{font-family:'Playfair Display',serif;font-size:28px;color:#fff;font-weight:400}
 .band-title em{font-style:italic}
 
-/* SECTION HEADER */
-.sec-hdr{padding:40px 24px 0}
+/* SEC HEADER */
+.sec-hdr{padding:40px 24px 20px}
 .sec-pre{font-size:8px;letter-spacing:5px;text-transform:uppercase;color:var(--mid);margin-bottom:10px}
 .sec-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:400;color:var(--black);line-height:1.15}
 .sec-title em{font-style:italic}
-.sec-line{width:24px;height:2px;background:var(--black);margin:14px 0 0}
+.sec-line{width:24px;height:2px;background:var(--black);margin-top:14px}
 
-/* PLATO CARD — foto cuadrada izq + info der */
-.platos-list{padding:8px 0 0}
-.plato{display:flex;align-items:stretch;border-bottom:1px solid var(--border);transition:background .2s;position:relative}
+/* PLATO CARD */
+.platos-list{padding:0}
+.plato{display:flex;align-items:stretch;border-bottom:1px solid var(--border);transition:background .15s}
 .plato:active{background:var(--gray)}
-.plato-img{width:100px;min-width:100px;height:100px;overflow:hidden;flex-shrink:0;position:relative}
+.plato-img{width:100px;min-width:100px;height:100px;overflow:hidden;flex-shrink:0}
 .plato-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
-.plato:hover .plato-img img{transform:scale(1.04)}
+.plato:hover .plato-img img{transform:scale(1.05)}
 .plato-body{padding:16px 16px 16px 14px;flex:1;display:flex;flex-direction:column;justify-content:space-between}
 .plato-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:4px}
 .plato-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:400;color:var(--black);line-height:1.25}
-.plato-price{font-size:13px;font-weight:500;color:var(--black);white-space:nowrap;letter-spacing:.3px}
+.plato-price{font-size:13px;font-weight:500;color:var(--black);white-space:nowrap}
 .plato-desc{font-size:11px;color:var(--mid);line-height:1.55;margin-bottom:8px}
 .plato-tags{display:flex;gap:4px;flex-wrap:wrap}
 .ptag{display:inline-flex;align-items:center;gap:3px;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border:1px solid var(--border);color:var(--mid)}
@@ -95,21 +91,18 @@ nav{position:sticky;top:0;z-index:300;background:rgba(255,255,255,.97);backdrop-
 .ptag.new{background:var(--black);color:#fff;border-color:var(--black)}
 .ptag.share{border-color:#999;color:#666}
 
-/* ESPECIALIDADES — layout especial */
-.espec-wrap{background:var(--gray);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+/* ESPEC HERO */
 .espec-hero{position:relative;height:54vw;min-height:220px;overflow:hidden}
 .espec-hero img{width:100%;height:100%;object-fit:cover;display:block}
-.espec-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:20px}
+.espec-hero-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:20px}
 .espec-hero-name{font-family:'Playfair Display',serif;font-size:24px;color:#fff;font-weight:400;margin-bottom:3px}
 .espec-hero-name em{font-style:italic}
-.espec-hero-desc{font-size:11px;color:rgba(255,255,255,.6);margin-bottom:6px}
-.espec-hero-price{font-size:14px;font-weight:500;color:#fff;letter-spacing:.5px}
+.espec-hero-desc{font-size:11px;color:rgba(255,255,255,.6)}
 
-/* NOVEDADES HIGHLIGHT */
-.nov-wrap{background:#fff}
+/* NOV HERO */
 .nov-hero{position:relative;height:56vw;min-height:230px;overflow:hidden}
 .nov-hero img{width:100%;height:100%;object-fit:cover;display:block}
-.nov-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,transparent 50%);display:flex;flex-direction:column;justify-content:flex-end;padding:20px}
+.nov-hero-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,transparent 50%);display:flex;flex-direction:column;justify-content:flex-end;padding:20px}
 .nov-badge{display:inline-flex;align-items:center;gap:5px;font-size:8px;letter-spacing:3px;text-transform:uppercase;background:#fff;color:#000;padding:4px 10px;margin-bottom:10px;width:fit-content}
 .nov-hero-name{font-family:'Playfair Display',serif;font-size:26px;color:#fff;font-weight:400;margin-bottom:3px}
 .nov-hero-name em{font-style:italic}
@@ -120,16 +113,15 @@ nav{position:sticky;top:0;z-index:300;background:rgba(255,255,255,.97);backdrop-
 .menu-sticky{position:sticky;top:56px;z-index:200;background:#fff;border-bottom:1px solid var(--border)}
 .menu-nav{display:flex;overflow-x:auto;scrollbar-width:none}
 .menu-nav::-webkit-scrollbar{display:none}
-.mtab{background:none;border:none;border-bottom:2px solid transparent;padding:14px 18px;font-family:'Inter',sans-serif;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--mid);cursor:pointer;white-space:nowrap;font-weight:500;transition:all .2s;margin-bottom:-1px}
+.mtab{background:none;border:none;border-bottom:2px solid transparent;padding:14px 16px;font-family:'Inter',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--mid);cursor:pointer;white-space:nowrap;font-weight:500;transition:all .2s;margin-bottom:-1px}
 .mtab.on{color:var(--black);border-bottom-color:var(--black)}
-
 .mcat{display:none}
 .mcat.show{display:block}
 .mcat-hdr{padding:32px 24px 0;border-bottom:1px solid var(--border);padding-bottom:20px}
 .mcat-icon{font-size:22px;margin-bottom:8px}
-.mcat-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:400;color:var(--black)}
+.mcat-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:400}
 .mcat-title em{font-style:italic}
-.mcat-sub{font-size:11px;color:var(--mid);letter-spacing:.5px;margin-top:4px}
+.mcat-sub{font-size:11px;color:var(--mid);margin-top:4px}
 
 /* RESERVAS */
 .res-hero{position:relative;height:44vw;min-height:200px;overflow:hidden}
@@ -144,43 +136,36 @@ nav{position:sticky;top:0;z-index:300;background:rgba(255,255,255,.97);backdrop-
 .finput,.ftextarea{width:100%;border:none;border-bottom:1.5px solid var(--border);padding:10px 0;font-size:14px;font-family:'Inter',sans-serif;color:var(--black);background:transparent;outline:none;transition:border .2s}
 .finput:focus,.ftextarea:focus{border-bottom-color:var(--black)}
 .ftextarea{resize:none;min-height:68px;line-height:1.5}
-
-/* CAL */
 .cal-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
-.cal-nbtn{background:none;border:1.5px solid var(--border);width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;color:var(--black);transition:all .2s}
+.cal-nbtn{background:none;border:1.5px solid var(--border);width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;transition:all .2s}
 .cal-nbtn:hover{border-color:var(--black)}
 .cal-mlbl{font-family:'Playfair Display',serif;font-size:18px;font-weight:400}
 .cal-dh{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:4px}
-.cal-dname{text-align:center;font-size:8px;letter-spacing:1px;color:var(--mid);padding:4px 0;text-transform:uppercase}
+.cal-dn{text-align:center;font-size:8px;letter-spacing:1px;color:var(--mid);padding:4px 0;text-transform:uppercase}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
-.cal-d{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer;color:var(--black);transition:all .2s;border:1.5px solid transparent}
+.cal-d{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer;transition:all .2s;border:1.5px solid transparent}
 .cal-d:hover:not(.dis){background:var(--gray);border-color:var(--border)}
 .cal-d.sel{background:var(--black);color:#fff;border-color:var(--black)}
 .cal-d.today{border-color:var(--black);font-weight:500}
 .cal-d.dis{color:#ccc;cursor:default}
-
 .slots{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-top:8px}
-.slot{padding:9px 2px;border:1.5px solid var(--border);text-align:center;font-size:11px;cursor:pointer;transition:all .2s;color:var(--black)}
+.slot{padding:9px 2px;border:1.5px solid var(--border);text-align:center;font-size:11px;cursor:pointer;transition:all .2s}
 .slot:hover{border-color:var(--black)}
 .slot.sel{background:var(--black);color:#fff;border-color:var(--black)}
-
 .pchips{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
-.pchip{padding:8px 13px;border:1.5px solid var(--border);font-size:12px;cursor:pointer;transition:all .2s;color:var(--black)}
+.pchip{padding:8px 13px;border:1.5px solid var(--border);font-size:12px;cursor:pointer;transition:all .2s}
 .pchip:hover{border-color:var(--black)}
 .pchip.sel{background:var(--black);color:#fff;border-color:var(--black)}
-
 .ws-btn{width:100%;background:#25D366;color:#fff;border:none;padding:17px;font-family:'Inter',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:32px;transition:opacity .2s}
 .ws-btn:hover{opacity:.9}
 .ws-btn svg{width:20px;height:20px;fill:#fff;flex-shrink:0}
 
-/* INFO STRIP */
-.info-strip{background:var(--black);color:#fff;display:grid;grid-template-columns:1fr 1fr;gap:0}
+/* INFO + FOOTER */
+.info-strip{background:var(--black);color:#fff;display:grid;grid-template-columns:1fr 1fr}
 .info-cell{padding:24px 20px;border-right:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}
 .info-cell:nth-child(even){border-right:none}
 .info-lbl{font-size:7px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:6px}
-.info-val{font-size:13px;color:#fff;font-weight:300}
-
-/* FOOTER */
+.info-val{font-size:13px;font-weight:300}
 footer{background:var(--black);padding:48px 24px 32px;text-align:center;border-top:1px solid rgba(255,255,255,.06)}
 .foot-logo{font-family:'Playfair Display',serif;font-size:26px;color:#fff;font-weight:400;margin-bottom:4px}
 .foot-logo em{font-style:italic}
@@ -201,19 +186,17 @@ footer{background:var(--black);padding:48px 24px 32px;text-align:center;border-t
 .bb svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .bb.on{color:var(--black)}
 .bb.ws{color:#25D366}
-.bb.ws svg{stroke:#25D366}
+.bb.ws svg{stroke:none;fill:#25D366}
 </style>
 </head>
 <body>
 
-<!-- LOADER -->
 <div id="loader">
   <div class="ld-city">Madrid · España</div>
   <div class="ld-logo">Hnas <em>Querosu</em></div>
   <div class="ld-line"></div>
 </div>
 
-<!-- NAV -->
 <nav>
   <div class="nav-logo">Hnas <em>Querosu</em></div>
   <div class="nav-right">
@@ -230,18 +213,19 @@ footer{background:var(--black);padding:48px 24px 32px;text-align:center;border-t
 <div class="page" id="pg-inicio">
 
   <div class="hero">
-    <div class="hero-bg"><img src="https://images.pexels.com/photos/1211887/pexels-photo-1211887.jpeg?auto=compress&cs=tinysrgb&w=900" alt="restaurante Madrid"></div>
+    <div class="hero-bg">
+      <img src="https://images.pexels.com/photos/31987477/pexels-photo-31987477.jpeg" alt="Hnas Querosu Madrid">
+    </div>
     <div class="hero-tag">📍 Madrid, España</div>
     <div class="hero-content">
       <p class="hero-pre">Restaurante · Cocina española</p>
       <h1 class="hero-title">Hnas<em>Querosu</em></h1>
       <p class="hero-loc">Cocina con alma · Madrid de verdad</p>
       <div class="hero-actions">
-        <button class="btn-black" onclick="showPage('menu')">Ver Menú</button>
+        <button class="btn-white" onclick="showPage('menu')">Ver Menú</button>
         <button class="btn-ghost" onclick="showPage('reservas')">Reservar</button>
       </div>
     </div>
-    <div class="hero-scroll"><span>Scroll</span><div class="hero-scroll-line"></div></div>
   </div>
 
   <div class="manifesto">
@@ -249,15 +233,12 @@ footer{background:var(--black);padding:48px 24px 32px;text-align:center;border-t
     <div class="man-line"></div>
     <h2 class="man-title">Sabor <em>honesto,</em><br>siempre</h2>
     <p class="man-body">Cocina casera con técnica y producto de verdad. Las Hermanas Querosu traen a Madrid los sabores mediterráneos de siempre, elevados con el toque que merecen.</p>
-    <button class="btn-dark" onclick="showPage('menu')">
-      <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke="#fff" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
-      Explorar la carta
-    </button>
+    <button class="btn-dark" onclick="showPage('menu')">Explorar la carta →</button>
   </div>
 
   <!-- BAND ESPECIALIDADES -->
   <div class="band">
-    <img src="https://images.pexels.com/photos/1639557/pexels-photo-1639557.jpeg?auto=compress&cs=tinysrgb&w=800" alt="especialidades">
+    <img src="https://images.pexels.com/photos/29653152/pexels-photo-29653152.jpeg" alt="especialidades">
     <div class="band-overlay">
       <p class="band-pre">⭐ Lo que nos define</p>
       <div class="band-title">Nuestras <em>Especialidades</em></div>
@@ -265,45 +246,55 @@ footer{background:var(--black);padding:48px 24px 32px;text-align:center;border-t
   </div>
 
   <!-- ESPECIALIDADES PREVIEW -->
-  <div class="espec-wrap">
-    <div class="sec-hdr"><p class="sec-pre">⭐ Estrella de la casa</p><h2 class="sec-title">Especialidades<br><em>imprescindibles</em></h2><div class="sec-line"></div></div>
+  <div style="background:var(--gray);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+    <div class="sec-hdr">
+      <p class="sec-pre">⭐ Estrella de la casa</p>
+      <h2 class="sec-title">Especialidades<br><em>imprescindibles</em></h2>
+      <div class="sec-line"></div>
+    </div>
     <div class="platos-list">
       <div class="plato">
-        <div class="plato-img"><img src="https://images.pexels.com/photos/6605312/pexels-photo-6605312.jpeg?auto=compress&cs=tinysrgb&w=200" alt="saquitos carillera"></div>
+        <div class="plato-img"><img src="https://hnosmesones.com/1697-thickbox_default/saquito-carrillera-ternera-aned.jpg" alt="saquitos carillera"></div>
         <div class="plato-body"><div class="plato-top"><span class="plato-name">Saquitos de Carillera</span><span class="plato-price">13,90 €</span></div><p class="plato-desc">14 ud · Hojaldre crujiente relleno de carillera</p><div class="plato-tags"><span class="ptag star">⭐ Estrella</span><span class="ptag share">Compartir</span></div></div>
       </div>
       <div class="plato">
-        <div class="plato-img"><img src="https://images.pexels.com/photos/8951144/pexels-photo-8951144.jpeg?auto=compress&cs=tinysrgb&w=200" alt="gyozas pato"></div>
-        <div class="plato-body"><div class="plato-top"><span class="plato-name">Gyozas de Pato</span><span class="plato-price">9,20 €</span></div><p class="plato-desc">9 ud · 20 g cada pieza · Masa fina</p><div class="plato-tags"><span class="ptag star">⭐ Estrella</span></div></div>
+        <div class="plato-img"><img src="https://images.pexels.com/photos/7287729/pexels-photo-7287729.jpeg" alt="gyozas pato"></div>
+        <div class="plato-body"><div class="plato-top"><span class="plato-name">Gyozas de Pato</span><span class="plato-price">9,20 €</span></div><p class="plato-desc">9 ud · 20 g cada pieza</p><div class="plato-tags"><span class="ptag star">⭐ Estrella</span></div></div>
       </div>
       <div class="plato">
-        <div class="plato-img"><img src="https://images.pexels.com/photos/6697343/pexels-photo-6697343.jpeg?auto=compress&cs=tinysrgb&w=200" alt="croquetas ibérica"></div>
+        <div class="plato-img"><img src="https://images.pexels.com/photos/31148901/pexels-photo-31148901.jpeg" alt="croquetas ibérica"></div>
         <div class="plato-body"><div class="plato-top"><span class="plato-name">Croquetas La Ibérica</span><span class="plato-price">11,80 €</span></div><p class="plato-desc">8 ud caseras · Jamón ibérico</p><div class="plato-tags"><span class="ptag star">⭐ Favorito</span></div></div>
       </div>
       <div class="plato">
-        <div class="plato-img"><img src="https://images.pexels.com/photos/3763847/pexels-photo-3763847.jpeg?auto=compress&cs=tinysrgb&w=200" alt="saquitos marisco"></div>
+        <div class="plato-img"><img src="https://s1.abcstatics.com/abc/sevilla/media/gurmesevilla/2010/04/saquitos-crujientes-de-arroz-con-marisco.jpg" alt="saquitos marisco"></div>
         <div class="plato-body"><div class="plato-top"><span class="plato-name">Saquitos de Marisco</span><span class="plato-price">13,90 €</span></div><p class="plato-desc">14 ud · Relleno de marisco en hojaldre</p><div class="plato-tags"><span class="ptag share">Compartir</span></div></div>
       </div>
     </div>
-    <div style="padding:20px 24px;border-top:1px solid var(--border)"><button class="btn-dark" style="width:100%;justify-content:center" onclick="showPage('menu')">Ver carta completa</button></div>
+    <div style="padding:20px 24px;border-top:1px solid var(--border)">
+      <button class="btn-dark" style="width:100%;justify-content:center" onclick="showPage('menu')">Ver carta completa →</button>
+    </div>
   </div>
 
   <!-- BAND AMBIENTE -->
   <div class="band" style="max-height:240px">
-    <img src="https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&cs=tinysrgb&w=800" alt="ambiente">
-    <div class="band-overlay" style="flex-direction:column;gap:12px">
+    <img src="https://images.pexels.com/photos/19766948/pexels-photo-19766948.jpeg" alt="ambiente">
+    <div class="band-overlay" style="gap:12px">
       <p class="band-pre">🕯️ El ambiente</p>
       <div class="band-title"><em>Vive</em> la experiencia</div>
-      <button class="btn-black" style="font-size:9px;padding:10px 22px" onclick="showPage('reservas')">Reservar mesa</button>
+      <button class="btn-white" style="font-size:9px;padding:10px 22px" onclick="showPage('reservas')">Reservar mesa</button>
     </div>
   </div>
 
   <!-- NOVEDADES -->
-  <div class="nov-wrap">
-    <div class="sec-hdr" style="padding-bottom:20px"><p class="sec-pre" style="color:#000">🔥 Recién llegadas</p><h2 class="sec-title">Novedades<br><em>de la carta</em></h2><div class="sec-line"></div></div>
+  <div>
+    <div class="sec-hdr" style="padding-bottom:20px">
+      <p class="sec-pre" style="color:#000">🔥 Recién llegadas</p>
+      <h2 class="sec-title">Novedades<br><em>de la carta</em></h2>
+      <div class="sec-line"></div>
+    </div>
     <div class="nov-hero">
-      <img src="https://images.pexels.com/photos/1639557/pexels-photo-1639557.jpeg?auto=compress&cs=tinysrgb&w=800" alt="hamburguesa querosu">
-      <div class="nov-hero-overlay">
+      <img src="https://images.pexels.com/photos/9975767/pexels-photo-9975767.jpeg" alt="hamburguesa querosu">
+      <div class="nov-hero-ov">
         <div class="nov-badge">🔥 Nuevo</div>
         <div class="nov-hero-name">Hamburguesa <em>Querosu</em></div>
         <div class="nov-hero-sub">Vacuno y buey · Huevo · Beicon · Queso · Patatas</div>
@@ -312,7 +303,7 @@ footer{background:var(--black);padding:48px 24px 32px;text-align:center;border-t
     </div>
     <div class="platos-list" style="border-top:1px solid var(--border)">
       <div class="plato">
-        <div class="plato-img"><img src="https://images.pexels.com/photos/1552635/pexels-photo-1552635.jpeg?auto=compress&cs=tinysrgb&w=200" alt="hamburguesa crispy"></div>
+        <div class="plato-img"><img src="https://images.pexels.com/photos/9975767/pexels-photo-9975767.jpeg" alt="hamburguesa crispy"></div>
         <div class="plato-body"><div class="plato-top"><span class="plato-name">Hamburguesa Crispy</span><span class="plato-price">12,20 €</span></div><p class="plato-desc">Pollo crujiente · Huevo · Beicon · Queso · Con patatas</p><div class="plato-tags"><span class="ptag new">🔥 Nuevo</span></div></div>
       </div>
     </div>
@@ -320,11 +311,11 @@ footer{background:var(--black);padding:48px 24px 32px;text-align:center;border-t
 
   <!-- BAND DEL MAR -->
   <div class="band" style="max-height:250px">
-    <img src="https://images.pexels.com/photos/1253648/pexels-photo-1253648.jpeg?auto=compress&cs=tinysrgb&w=800" alt="del mar">
+    <img src="https://images.pexels.com/photos/19359941/pexels-photo-19359941.jpeg" alt="del mar">
     <div class="band-overlay" style="gap:10px">
       <p class="band-pre">🦑 Océano en el plato</p>
       <div class="band-title">Del <em>Mar</em></div>
-      <button class="btn-black" style="font-size:9px;padding:10px 20px" onclick="showCat('mar');showPage('menu')">Ver platos de mar</button>
+      <button class="btn-white" style="font-size:9px;padding:10px 20px" onclick="showCat('mar');showPage('menu')">Ver platos de mar</button>
     </div>
   </div>
 
@@ -353,7 +344,7 @@ footer{background:var(--black);padding:48px 24px 32px;text-align:center;border-t
 <!-- ===== MENÚ ===== -->
 <div class="page off" id="pg-menu">
   <div class="band" style="max-height:190px">
-    <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=800" alt="carta">
+    <img src="https://images.pexels.com/photos/29653152/pexels-photo-29653152.jpeg" alt="carta">
     <div class="band-overlay"><p class="band-pre">Hermanas Querosu</p><div class="band-title">La <em>Carta</em></div></div>
   </div>
 
@@ -368,67 +359,67 @@ footer{background:var(--black);padding:48px 24px 32px;text-align:center;border-t
 
   <!-- RACIONES -->
   <div class="mcat show" id="cat-raciones">
-    <div class="mcat-hdr"><div class="mcat-icon">🍟</div><div class="mcat-title"><em>Raciones</em></div><div class="mcat-sub">Para compartir o no — tú decides</div></div>
+    <div class="mcat-hdr">
+      <div class="mcat-icon">🍟</div>
+      <div class="mcat-title"><em>Raciones</em></div>
+      <div class="mcat-sub">Para compartir o no — tú decides</div>
+    </div>
     <div class="platos-list">
-      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/1583884/pexels-photo-1583884.jpeg?auto=compress&cs=tinysrgb&w=200" alt="patatas bravas"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Patata Mixta</span><span class="plato-price">9,10 €</span></div><p class="plato-desc">Brava o alioli · elige o pide las dos</p><div class="plato-tags"><span class="ptag star">⭐ Popular</span></div></div></div>
-      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/6697343/pexels-photo-6697343.jpeg?auto=compress&cs=tinysrgb&w=200" alt="croquetas ibérica"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Croquetas La Ibérica</span><span class="plato-price">11,80 €</span></div><p class="plato-desc">Caseras · 8 ud · Jamón ibérico</p><div class="plato-tags"><span class="ptag star">⭐ Favorito</span></div></div></div>
-      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/6697343/pexels-photo-6697343.jpeg?auto=compress&cs=tinysrgb&w=200" alt="croquetas zamorana"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Croquetas La Zamorana</span><span class="plato-price">11,80 €</span></div><p class="plato-desc">Caseras · 8 ud · Receta tradicional</p></div></div>
-      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/3186654/pexels-photo-3186654.jpeg?auto=compress&cs=tinysrgb&w=200" alt="croquetas mar"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Croquetas La del Mar</span><span class="plato-price">11,80 €</span></div><p class="plato-desc">Caseras · 8 ud · Sabor a océano</p></div></div>
-      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/8951144/pexels-photo-8951144.jpeg?auto=compress&cs=tinysrgb&w=200" alt="gyozas"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Gyozas de Pato</span><span class="plato-price">9,20 €</span></div><p class="plato-desc">9 ud · 20 g cada pieza</p><div class="plato-tags"><span class="ptag star">⭐ Popular</span></div></div></div>
-      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/1059905/pexels-photo-1059905.jpeg?auto=compress&cs=tinysrgb&w=200" alt="jalapeños"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Bites Jalapeño y Gouda</span><span class="plato-price">9,20 €</span></div><p class="plato-desc">Crujientes por fuera, cremosos por dentro</p></div></div>
-      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/1108775/pexels-photo-1108775.jpeg?auto=compress&cs=tinysrgb&w=200" alt="nachos"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Nachos Pollo Guacamole</span><span class="plato-price">10,20 €</span></div><p class="plato-desc">Estilo Tijuana</p><div class="plato-tags"><span class="ptag share">🤝 Compartir</span></div></div></div>
-      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/2338407/pexels-photo-2338407.jpeg?auto=compress&cs=tinysrgb&w=200" alt="alitas bbq"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Alitas BBQ</span><span class="plato-price">11,00 €</span></div><p class="plato-desc">8 ud · Salsa BBQ casera</p></div></div>
-      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/3535383/pexels-photo-3535383.jpeg?auto=compress&cs=tinysrgb&w=200" alt="oreja ajillo"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Oreja al Ajillo</span><span class="plato-price">11,60 €</span></div><p class="plato-desc">Receta clásica madrileña</p></div></div>
-      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/410648/pexels-photo-410648.jpeg?auto=compress&cs=tinysrgb&w=200" alt="torreznos"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Torreznos</span><span class="plato-price">12,90 €</span></div><p class="plato-desc">2 ud · Crujientes, como tienen que ser</p></div></div>
+      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/35438980/pexels-photo-35438980.jpeg" alt="patatas bravas"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Patata Mixta</span><span class="plato-price">9,10 €</span></div><p class="plato-desc">Brava o alioli · elige o pide las dos</p><div class="plato-tags"><span class="ptag star">⭐ Popular</span></div></div></div>
+      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/31148901/pexels-photo-31148901.jpeg" alt="croquetas ibérica"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Croquetas La Ibérica</span><span class="plato-price">11,80 €</span></div><p class="plato-desc">Caseras · 8 ud · Jamón ibérico</p><div class="plato-tags"><span class="ptag star">⭐ Favorito</span></div></div></div>
+      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/31148901/pexels-photo-31148901.jpeg" alt="croquetas zamorana"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Croquetas La Zamorana</span><span class="plato-price">11,80 €</span></div><p class="plato-desc">Caseras · 8 ud · Receta tradicional</p></div></div>
+      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/31148901/pexels-photo-31148901.jpeg" alt="croquetas mar"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Croquetas La del Mar</span><span class="plato-price">11,80 €</span></div><p class="plato-desc">Caseras · 8 ud · Sabor a océano</p></div></div>
+      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/7287729/pexels-photo-7287729.jpeg" alt="gyozas"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Gyozas de Pato</span><span class="plato-price">9,20 €</span></div><p class="plato-desc">9 ud · 20 g cada pieza</p><div class="plato-tags"><span class="ptag star">⭐ Popular</span></div></div></div>
+      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/35438980/pexels-photo-35438980.jpeg" alt="jalapeños"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Bites Jalapeño y Gouda</span><span class="plato-price">9,20 €</span></div><p class="plato-desc">Crujientes por fuera, cremosos por dentro</p></div></div>
+      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/35438980/pexels-photo-35438980.jpeg" alt="nachos"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Nachos Pollo Guacamole</span><span class="plato-price">10,20 €</span></div><p class="plato-desc">Estilo Tijuana</p><div class="plato-tags"><span class="ptag share">🤝 Compartir</span></div></div></div>
+      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/35438980/pexels-photo-35438980.jpeg" alt="alitas bbq"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Alitas BBQ</span><span class="plato-price">11,00 €</span></div><p class="plato-desc">8 ud · Salsa BBQ casera</p></div></div>
+      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/35438980/pexels-photo-35438980.jpeg" alt="oreja ajillo"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Oreja al Ajillo</span><span class="plato-price">11,60 €</span></div><p class="plato-desc">Receta clásica madrileña</p></div></div>
+      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/35438980/pexels-photo-35438980.jpeg" alt="torreznos"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Torreznos</span><span class="plato-price">12,90 €</span></div><p class="plato-desc">2 ud · Crujientes, como tienen que ser</p></div></div>
     </div>
   </div>
 
   <!-- ESPECIALIDADES -->
   <div class="mcat" id="cat-espec">
-    <div class="espec-wrap" style="background:#fff">
-      <div class="espec-hero">
-        <img src="https://images.pexels.com/photos/6605312/pexels-photo-6605312.jpeg?auto=compress&cs=tinysrgb&w=800" alt="especialidades">
-        <div class="espec-hero-overlay">
-          <div class="espec-hero-name">⭐ <em>Especialidades</em></div>
-          <div class="espec-hero-desc">Los platos que repiten siempre</div>
-        </div>
+    <div class="espec-hero">
+      <img src="https://offloadmedia.feverup.com/madridsecreto.co/wp-content/uploads/2022/03/19175945/Ous_trencats_-_La_picaeta-1-1024x683.jpg" alt="especialidades">
+      <div class="espec-hero-ov">
+        <div class="espec-hero-name">⭐ <em>Especialidades</em></div>
+        <div class="espec-hero-desc">Los platos que repiten siempre</div>
       </div>
     </div>
     <div class="platos-list">
-      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/2338407/pexels-photo-2338407.jpeg?auto=compress&cs=tinysrgb&w=200" alt="tiras pollo"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Tiras Pollo Kentucky</span><span class="plato-price">14,60 €</span></div><p class="plato-desc">Rebozado crujiente al estilo americano</p><div class="plato-tags"><span class="ptag star">⭐ Popular</span></div></div></div>
-      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/6605312/pexels-photo-6605312.jpeg?auto=compress&cs=tinysrgb&w=200" alt="saquitos carillera"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Saquitos de Carillera</span><span class="plato-price">13,90 €</span></div><p class="plato-desc">14 ud · Carillera en hojaldre crujiente</p><div class="plato-tags"><span class="ptag star">⭐ Estrella</span><span class="ptag share">Compartir</span></div></div></div>
-      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/3763847/pexels-photo-3763847.jpeg?auto=compress&cs=tinysrgb&w=200" alt="saquitos marisco"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Saquitos de Marisco</span><span class="plato-price">13,90 €</span></div><p class="plato-desc">14 ud · Relleno de marisco en hojaldre</p><div class="plato-tags"><span class="ptag share">🤝 Compartir</span></div></div></div>
-      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/2338407/pexels-photo-2338407.jpeg?auto=compress&cs=tinysrgb&w=200" alt="alitas kentucky"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Alitas Kentucky</span><span class="plato-price">12,50 €</span></div><p class="plato-desc">8 ud · Crujientes al estilo Kentucky</p></div></div>
-      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/566566/pexels-photo-566566.jpeg?auto=compress&cs=tinysrgb&w=200" alt="huevos rotos"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Huevos Rotos</span><span class="plato-price">12,00 €</span></div><p class="plato-desc">Con jamón o con chorizo</p><div class="plato-tags"><span class="ptag star">⭐ Popular</span></div></div></div>
+      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/29653152/pexels-photo-29653152.jpeg" alt="tiras pollo"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Tiras Pollo Kentucky</span><span class="plato-price">14,60 €</span></div><p class="plato-desc">Rebozado crujiente al estilo americano</p><div class="plato-tags"><span class="ptag star">⭐ Popular</span></div></div></div>
+      <div class="plato"><div class="plato-img"><img src="https://hnosmesones.com/1697-thickbox_default/saquito-carrillera-ternera-aned.jpg" alt="saquitos carillera"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Saquitos de Carillera</span><span class="plato-price">13,90 €</span></div><p class="plato-desc">14 ud · Carillera en hojaldre crujiente</p><div class="plato-tags"><span class="ptag star">⭐ Estrella</span><span class="ptag share">Compartir</span></div></div></div>
+      <div class="plato"><div class="plato-img"><img src="https://s1.abcstatics.com/abc/sevilla/media/gurmesevilla/2010/04/saquitos-crujientes-de-arroz-con-marisco.jpg" alt="saquitos marisco"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Saquitos de Marisco</span><span class="plato-price">13,90 €</span></div><p class="plato-desc">14 ud · Relleno de marisco en hojaldre</p><div class="plato-tags"><span class="ptag share">🤝 Compartir</span></div></div></div>
+      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/29653152/pexels-photo-29653152.jpeg" alt="alitas kentucky"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Alitas Kentucky</span><span class="plato-price">12,50 €</span></div><p class="plato-desc">8 ud · Crujientes al estilo Kentucky</p></div></div>
+      <div class="plato"><div class="plato-img"><img src="https://offloadmedia.feverup.com/madridsecreto.co/wp-content/uploads/2022/03/19175945/Ous_trencats_-_La_picaeta-1-1024x683.jpg" alt="huevos rotos"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Huevos Rotos</span><span class="plato-price">12,00 €</span></div><p class="plato-desc">Con jamón o con chorizo</p><div class="plato-tags"><span class="ptag star">⭐ Popular</span></div></div></div>
     </div>
   </div>
 
   <!-- DEL MAR -->
   <div class="mcat" id="cat-mar">
-    <div class="espec-wrap" style="background:#fff">
-      <div class="espec-hero">
-        <img src="https://images.pexels.com/photos/1253648/pexels-photo-1253648.jpeg?auto=compress&cs=tinysrgb&w=800" alt="del mar">
-        <div class="espec-hero-overlay">
-          <div class="espec-hero-name">🦑 <em>Del Mar</em></div>
-          <div class="espec-hero-desc">Frescos y al punto, siempre</div>
-        </div>
+    <div class="espec-hero">
+      <img src="https://images.pexels.com/photos/36921555/pexels-photo-36921555.jpeg" alt="del mar">
+      <div class="espec-hero-ov">
+        <div class="espec-hero-name">🦑 <em>Del Mar</em></div>
+        <div class="espec-hero-desc">Frescos y al punto, siempre</div>
       </div>
     </div>
     <div class="platos-list">
-      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/3763847/pexels-photo-3763847.jpeg?auto=compress&cs=tinysrgb&w=200" alt="patas calamar"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Patas de Calamar</span><span class="plato-price">13,90 €</span></div><p class="plato-desc">Doradas a la perfección</p></div></div>
-      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/3186654/pexels-photo-3186654.jpeg?auto=compress&cs=tinysrgb&w=200" alt="calamares andaluza"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Calamares Andaluza</span><span class="plato-price">12,50 €</span></div><p class="plato-desc">Rebozados en harina y fritos en aceite de oliva</p><div class="plato-tags"><span class="ptag star">⭐ Popular</span></div></div></div>
-      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/725991/pexels-photo-725991.jpeg?auto=compress&cs=tinysrgb&w=200" alt="gambón plancha"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Gambón a la Plancha</span><span class="plato-price">14,20 €</span></div><p class="plato-desc">8 ud · Jugosos y al punto</p><div class="plato-tags"><span class="ptag star">⭐ Popular</span></div></div></div>
-      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=200" alt="fritura pescado"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Fritura de Pescado</span><span class="plato-price">28,10 €</span></div><p class="plato-desc">Boquerones, calamares, patas y cazón</p><div class="plato-tags"><span class="ptag share">🤝 Compartir</span></div></div></div>
-      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/3763847/pexels-photo-3763847.jpeg?auto=compress&cs=tinysrgb&w=200" alt="sepia plancha"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Sepia a la Plancha</span><span class="plato-price">16,30 €</span></div><p class="plato-desc">2 ud · Con alioli de la casa</p></div></div>
-      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/3186654/pexels-photo-3186654.jpeg?auto=compress&cs=tinysrgb&w=200" alt="boquerones fritos"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Boquerones Fritos</span><span class="plato-price">12,10 €</span></div><p class="plato-desc">Ración completa · Recién fritos</p></div></div>
+      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/19359941/pexels-photo-19359941.jpeg" alt="patas calamar"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Patas de Calamar</span><span class="plato-price">13,90 €</span></div><p class="plato-desc">Doradas a la perfección</p></div></div>
+      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/19359941/pexels-photo-19359941.jpeg" alt="calamares andaluza"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Calamares Andaluza</span><span class="plato-price">12,50 €</span></div><p class="plato-desc">Rebozados en harina y fritos en aceite de oliva</p><div class="plato-tags"><span class="ptag star">⭐ Popular</span></div></div></div>
+      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/36921555/pexels-photo-36921555.jpeg" alt="gambón plancha"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Gambón a la Plancha</span><span class="plato-price">14,20 €</span></div><p class="plato-desc">8 ud · Jugosos y al punto</p><div class="plato-tags"><span class="ptag star">⭐ Popular</span></div></div></div>
+      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/36921555/pexels-photo-36921555.jpeg" alt="fritura pescado"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Fritura de Pescado</span><span class="plato-price">28,10 €</span></div><p class="plato-desc">Boquerones, calamares, patas y cazón</p><div class="plato-tags"><span class="ptag share">🤝 Compartir</span></div></div></div>
+      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/19359941/pexels-photo-19359941.jpeg" alt="sepia plancha"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Sepia a la Plancha</span><span class="plato-price">16,30 €</span></div><p class="plato-desc">2 ud · Con alioli de la casa</p></div></div>
+      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/19359941/pexels-photo-19359941.jpeg" alt="boquerones fritos"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Boquerones Fritos</span><span class="plato-price">12,10 €</span></div><p class="plato-desc">Ración completa · Recién fritos</p></div></div>
     </div>
   </div>
 
   <!-- NOVEDADES -->
   <div class="mcat" id="cat-novedades">
     <div class="nov-hero">
-      <img src="https://images.pexels.com/photos/1639557/pexels-photo-1639557.jpeg?auto=compress&cs=tinysrgb&w=800" alt="hamburguesa querosu">
-      <div class="nov-hero-overlay">
+      <img src="https://images.pexels.com/photos/9975767/pexels-photo-9975767.jpeg" alt="hamburguesa querosu">
+      <div class="nov-hero-ov">
         <div class="nov-badge">🔥 Nuevo</div>
         <div class="nov-hero-name">Hamburguesa <em>Querosu</em></div>
         <div class="nov-hero-sub">Vacuno y buey · Huevo · Beicon · Queso · Patatas</div>
@@ -436,7 +427,7 @@ footer{background:var(--black);padding:48px 24px 32px;text-align:center;border-t
       </div>
     </div>
     <div class="platos-list" style="border-top:1px solid var(--border)">
-      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/1552635/pexels-photo-1552635.jpeg?auto=compress&cs=tinysrgb&w=200" alt="hamburguesa crispy"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Hamburguesa Crispy</span><span class="plato-price">12,20 €</span></div><p class="plato-desc">Pollo crujiente · Huevo · Beicon · Queso · Con patatas</p><div class="plato-tags"><span class="ptag new">🔥 Nuevo</span></div></div></div>
+      <div class="plato"><div class="plato-img"><img src="https://images.pexels.com/photos/9975767/pexels-photo-9975767.jpeg" alt="hamburguesa crispy"></div><div class="plato-body"><div class="plato-top"><span class="plato-name">Hamburguesa Crispy</span><span class="plato-price">12,20 €</span></div><p class="plato-desc">Pollo crujiente · Huevo · Beicon · Queso · Con patatas</p><div class="plato-tags"><span class="ptag new">🔥 Nuevo</span></div></div></div>
     </div>
   </div>
 </div>
@@ -444,7 +435,7 @@ footer{background:var(--black);padding:48px 24px 32px;text-align:center;border-t
 <!-- ===== RESERVAS ===== -->
 <div class="page off" id="pg-reservas">
   <div class="res-hero">
-    <img src="https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg?auto=compress&cs=tinysrgb&w=800" alt="reservar mesa">
+    <img src="https://images.pexels.com/photos/19766948/pexels-photo-19766948.jpeg" alt="reservar mesa">
     <div class="res-hero-ov">
       <div class="res-hero-title">Reservar <em>Mesa</em></div>
       <div class="res-hero-sub">📲 Te confirmamos por WhatsApp</div>
@@ -459,30 +450,26 @@ footer{background:var(--black);padding:48px 24px 32px;text-align:center;border-t
     </div>
     <div class="cal-dh" id="calDH"></div>
     <div class="cal-grid" id="calG"></div>
-
     <label class="lbl">⏰ Hora</label>
     <div class="slots">
       <div class="slot" onclick="selS(this)">13:00</div><div class="slot" onclick="selS(this)">13:30</div><div class="slot" onclick="selS(this)">14:00</div><div class="slot" onclick="selS(this)">14:30</div><div class="slot" onclick="selS(this)">15:00</div>
       <div class="slot" onclick="selS(this)">20:00</div><div class="slot" onclick="selS(this)">20:30</div><div class="slot" onclick="selS(this)">21:00</div><div class="slot" onclick="selS(this)">21:30</div><div class="slot" onclick="selS(this)">22:00</div>
     </div>
-
     <label class="lbl">👥 Personas</label>
     <div class="pchips">
       <div class="pchip" onclick="selP(this,'1')">1</div><div class="pchip" onclick="selP(this,'2')">2</div><div class="pchip" onclick="selP(this,'3')">3</div><div class="pchip" onclick="selP(this,'4')">4</div><div class="pchip" onclick="selP(this,'5')">5</div><div class="pchip" onclick="selP(this,'6')">6</div><div class="pchip" onclick="selP(this,'+7')">+7</div>
     </div>
-
     <label class="lbl">👤 Tu nombre</label>
     <input type="text" class="finput" id="rN" placeholder="Nombre y apellido">
     <label class="lbl">📱 Teléfono</label>
     <input type="tel" class="finput" id="rT" placeholder="+34 600 000 000">
     <label class="lbl">📝 Notas especiales (opcional)</label>
     <textarea class="ftextarea" id="rNo" placeholder="Alergias, celebración, mesa especial..."></textarea>
-
     <button class="ws-btn" onclick="enviar()">
       <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.101 1.51 5.83L.057 23.214a.75.75 0 0 0 .918.899l5.444-1.428A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.694-.5-5.24-1.373l-.374-.214-3.875 1.016 1.037-3.79-.228-.37A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
       Enviar reserva por WhatsApp
     </button>
-    <p style="text-align:center;font-size:10px;color:var(--mid);margin-top:10px;letter-spacing:.5px">Se abrirá WhatsApp con tu reserva lista para enviar</p>
+    <p style="text-align:center;font-size:10px;color:var(--mid);margin-top:10px">Se abrirá WhatsApp con tu reserva lista para enviar</p>
   </div>
 </div>
 
@@ -498,7 +485,7 @@ footer{background:var(--black);padding:48px 24px 32px;text-align:center;border-t
     <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Reservar
   </button>
   <button class="bb ws" onclick="openWS()">
-    <svg viewBox="0 0 24 24" fill="#25D366" stroke="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.101 1.51 5.83L.057 23.214a.75.75 0 0 0 .918.899l5.444-1.428A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.694-.5-5.24-1.373l-.374-.214-3.875 1.016 1.037-3.79-.228-.37A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>WhatsApp
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.101 1.51 5.83L.057 23.214a.75.75 0 0 0 .918.899l5.444-1.428A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.694-.5-5.24-1.373l-.374-.214-3.875 1.016 1.037-3.79-.228-.37A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>WhatsApp
   </button>
 </div>
 
@@ -507,64 +494,37 @@ const WS='34602523639';
 let cY,cM,sDate='',sTime='',sPers='';
 const MOS=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 const WDS=['L','M','X','J','V','S','D'];
-
-function showPage(p){
-  ['inicio','menu','reservas'].forEach(x=>{
-    document.getElementById('pg-'+x).classList.toggle('off',x!==p);
-    const b=document.getElementById('bb-'+x);
-    if(b)b.classList.toggle('on',x===p);
-  });
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-function showCat(id,btn){
-  document.querySelectorAll('.mcat').forEach(c=>c.classList.remove('show'));
-  document.getElementById('cat-'+id).classList.add('show');
-  if(btn){document.querySelectorAll('.mtab').forEach(t=>t.classList.remove('on'));btn.classList.add('on');}
-}
+function showPage(p){['inicio','menu','reservas'].forEach(x=>{document.getElementById('pg-'+x).classList.toggle('off',x!==p);const b=document.getElementById('bb-'+x);if(b)b.classList.toggle('on',x===p)});window.scrollTo({top:0,behavior:'smooth'})}
+function showCat(id,btn){document.querySelectorAll('.mcat').forEach(c=>c.classList.remove('show'));document.getElementById('cat-'+id).classList.add('show');if(btn){document.querySelectorAll('.mtab').forEach(t=>t.classList.remove('on'));btn.classList.add('on')}}
 function openWS(){window.open('https://wa.me/'+WS,'_blank')}
 function openIG(){window.open('https://www.instagram.com/restaurante_hermanas_querosu/','_blank')}
-
 function initCal(){const n=new Date();cY=n.getFullYear();cM=n.getMonth();renderCal()}
 function chM(d){cM+=d;if(cM<0){cM=11;cY--}if(cM>11){cM=0;cY++}renderCal()}
 function renderCal(){
   document.getElementById('calLbl').textContent=MOS[cM]+' '+cY;
-  document.getElementById('calDH').innerHTML=WDS.map(d=>`<div class="cal-dname">${d}</div>`).join('');
+  document.getElementById('calDH').innerHTML=WDS.map(d=>`<div class="cal-dn">${d}</div>`).join('');
   const g=document.getElementById('calG');g.innerHTML='';
   const f=new Date(cY,cM,1);let sd=f.getDay();sd=sd===0?6:sd-1;
   const dim=new Date(cY,cM+1,0).getDate();
   const today=new Date();today.setHours(0,0,0,0);
   for(let i=0;i<sd;i++){const el=document.createElement('div');el.className='cal-d dis';g.appendChild(el)}
   for(let day=1;day<=dim;day++){
-    const el=document.createElement('div');
-    const dt=new Date(cY,cM,day);
-    const ds=`${day}/${cM+1}/${cY}`;
-    const past=dt<today;
+    const el=document.createElement('div');const dt=new Date(cY,cM,day);const ds=`${day}/${cM+1}/${cY}`;const past=dt<today;
     el.className='cal-d'+(past?' dis':'')+(ds===sDate?' sel':'');
     if(dt.getTime()===today.getTime())el.classList.add('today');
-    el.textContent=day;
-    if(!past)el.onclick=()=>{sDate=ds;renderCal()};
-    g.appendChild(el);
+    el.textContent=day;if(!past)el.onclick=()=>{sDate=ds;renderCal()};g.appendChild(el);
   }
 }
 function selS(el){document.querySelectorAll('.slot').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');sTime=el.textContent}
 function selP(el,v){document.querySelectorAll('.pchip').forEach(c=>c.classList.remove('sel'));el.classList.add('sel');sPers=v}
 function enviar(){
-  const n=document.getElementById('rN').value.trim();
-  const t=document.getElementById('rT').value.trim();
-  const no=document.getElementById('rNo').value.trim();
-  if(!sDate)return alert('Selecciona un día');
-  if(!sTime)return alert('Selecciona una hora');
-  if(!sPers)return alert('Indica el número de personas');
-  if(!n)return alert('Escribe tu nombre');
+  const n=document.getElementById('rN').value.trim();const t=document.getElementById('rT').value.trim();const no=document.getElementById('rNo').value.trim();
+  if(!sDate)return alert('Selecciona un día');if(!sTime)return alert('Selecciona una hora');if(!sPers)return alert('Indica el número de personas');if(!n)return alert('Escribe tu nombre');
   let msg=`🍽️ *RESERVA · Hnas Querosu*\n\n📅 Día: ${sDate}\n⏰ Hora: ${sTime}\n👥 Personas: ${sPers}\n👤 Nombre: ${n}`;
-  if(t)msg+=`\n📱 Tel: ${t}`;
-  if(no)msg+=`\n📝 Notas: ${no}`;
-  msg+='\n\n¡Muchas gracias! 😊';
+  if(t)msg+=`\n📱 Tel: ${t}`;if(no)msg+=`\n📝 Notas: ${no}`;msg+='\n\n¡Muchas gracias! 😊';
   window.open(`https://wa.me/${WS}?text=${encodeURIComponent(msg)}`,'_blank');
 }
-window.addEventListener('load',()=>{
-  setTimeout(()=>{document.getElementById('loader').classList.add('out');setTimeout(()=>document.getElementById('loader').style.display='none',700)},1500);
-});
+window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('loader').classList.add('out');setTimeout(()=>document.getElementById('loader').style.display='none',700)},1500)});
 initCal();
 </script>
 </body>
